@@ -8,15 +8,16 @@ import { UserService }  from '../shared/services/user.service';
 import { EmailValidator } from '../directives/email.validator.directive';
 
 import { routing }  from './account.routing';
-//import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
 
 
 @NgModule({
   imports: [
     CommonModule,FormsModule,routing//,SharedModule
   ],
-  declarations: [EmailValidator, LoginFormComponent],
+  declarations: [EmailValidator, LoginFormComponent, RegistrationFormComponent
+  ],
   providers:    [ UserService ]
 })
 export class AccountModule { }

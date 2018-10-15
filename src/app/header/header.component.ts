@@ -11,18 +11,18 @@ import { UserService } from '../shared/services/user.service';
 
 export class HeaderComponent implements OnInit,OnDestroy {
 
-  status: boolean;
+ status: boolean;
  subscription:Subscription;
 
-  constructor() {     
+  constructor(private userService:UserService) {     
    }
 
    logout() {
-    // this.userService.logout();       
+     this.userService.logout();       
   }
 
   ngOnInit() {
-  //  this.subscription = this.userService.authNavStatus$.subscribe(status => this.status = status);
+    this.subscription = this.userService.authNavStatus$.subscribe(status => this.status = status);
   }
 
    ngOnDestroy() {

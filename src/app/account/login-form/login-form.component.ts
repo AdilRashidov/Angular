@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { UserLogin } from '../../shared/models/user.login';
 import { UserService} from '../../shared/services/user.service';
-import { first } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-form',
@@ -14,52 +14,45 @@ import { first } from 'rxjs/operators';
 })
 
 export class LoginFormComponent implements OnInit {
-    loginForm: FormGroup;
-    loading = false;
-    submitted = false;
-    returnUrl: string;
-    error = '';
+    private subscription: Subscription;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
-        private authenticationService: UserService) {}
+    brandNew: boolean;
+    errors: string;
+    isRequesting: boolean;
+    submitted: boolean = false;
+    credentials: UserLogin = { email: '', password: '' };
 
-    ngOnInit() {
-        this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
-        });
+    constructor(private userService: UserService, private router: Router,
+        private activatedRoute: ActivatedRoute) {}
 
-        // reset login status
-        this.authenticationService.logout();
+        ngOnInit() {
+            // subscribe to router event
+            this.subscription = this.activatedRoute.queryParams.subscribe(
+              (param: any) => {
+                 this.brandNew = param['brandNew'];   
+                 this.credentials.email = param['email'];         
+              });      
+                    }
 
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    }
+        ngOnDestroy() {
+                // prevent memory leak by unsubscribing
+            this.subscription.unsubscribe();
+                      }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
-
-    onSubmit() {
+    login({ value, valid }: { value: UserLogin, valid: boolean }) {
         this.submitted = true;
-
-        // stop here if form is invalid
-        if (this.loginForm.invalid) {
-            return 'adsadsad';
-        }
-
-        this.loading = true;
-        this.authenticationService.login(this.f.e.value, this.f.password.value)
-            .pipe(first())
+        this.isRequesting = true;
+        this.errors='';
+        if (valid) {
+          this.userService.login(value.email, value.password)
+            .pipe(finalize(() => this.isRequesting = false))
             .subscribe(
-                data => {console.log(data);
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.error = error;
-                    this.loading = false;
-                });
-    }
+            result => {         
+              if (result) {
+                 this.router.navigate(['/todo']);             
+              }
+            },
+            error => this.errors = error);
+        }
+      }   
 }

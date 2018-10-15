@@ -14,7 +14,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 // Add the RxJS Observable operators we need in this app.
 import {map, tap} from 'rxjs/operators';
 import {catchError} from 'rxjs/operators';
-import { pipe } from 'rxjs';
+import { pipe } from '@angular/core/src/render3/pipe';
+
 
 
 @Injectable({providedIn:'root'})
@@ -37,24 +38,32 @@ export class UserService extends BaseService {
     this.baseUrl = configService.getApiURI();
   }
 
-    register(user:UserRegistration) {
-    return this.http.post(this.baseUrl + "/account/register", user);
+    register(email,password) {
+    return this.http.post(this.baseUrl + "/account/register", {email,password});
   }  
 
-  login(username: string, password: string) {
+  login(email,password) {
     return this.http.post<any>(this.baseUrl+'/auth/login', { email, password })
-        .pipe(map(user => {
-            // login successful if there's a jwt token in the response
-            if (user && user.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-            }
-
-            return user;
-        }));
-}
+          .pipe(map(res=>{ 
+                localStorage.setItem('auth_token', JSON.stringify(res.access_token));
+             //   console.log(localStorage.getItem('auth_token'));
+                this.loggedIn = true;
+                this._authNavStatusSource.next(true);
+                return true;
+            }),
+            catchError(this.handleError));
+          };
+  getToken(){
+    return localStorage.getItem('access_token');
+  }
 
   logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('auth_token');
+    this.loggedIn = false;
+    this._authNavStatusSource.next(false);
   }
+  isLoggedIn() {
+    return this.loggedIn;
+  }
+
 }
