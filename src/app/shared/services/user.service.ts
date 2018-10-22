@@ -45,7 +45,7 @@ export class UserService extends BaseService {
   login(email,password) {
     return this.http.post<any>(this.baseUrl+'/auth/login', { email, password })
           .pipe(map(res=>{ 
-                localStorage.setItem('auth_token', JSON.stringify(res.access_token));
+                localStorage.setItem('auth_token', res.access_token);
              //   console.log(localStorage.getItem('auth_token'));
                 this.loggedIn = true;
                 this._authNavStatusSource.next(true);

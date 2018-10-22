@@ -39,9 +39,21 @@ export class ToDoService extends BaseService {
         this.baseUrl = configService.getApiURI();
       }
 
-      GetToDoList() {        
+      GetToDoList() 
+      {        
         return this.http.get(this.baseUrl + "/todo");
-      }  
+      }
+      
+      ToDoAdd(todo: ToDo)
+      {
+        return this.http.post(this.baseUrl +"/todo",todo)
+      }
+
+      ToDoDo(id:number)
+      {
+        return this.http.put(this.baseUrl + "/todo/do/"+id,{});
+      }
+
 
 
     }

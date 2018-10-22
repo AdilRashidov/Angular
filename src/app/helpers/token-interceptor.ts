@@ -20,7 +20,6 @@ export class TokenInterceptor implements HttpInterceptor {
                 Authorization: 'Bearer '+ authToken
             } 
         });
-        console.log(request);
     return next.handle(request);  
     }  
   }

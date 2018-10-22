@@ -1,30 +1,22 @@
 <h2>Todos</h2>
-<input placeholder="description..." [(ngModel)]="todoMessage">
-<button class="btn btn-primary" (click)="addTodo()">Add</button>
+<input placeholder="name" [(ngModel)]="todoName">
+<button class="btn btn-primary" (click)="ToDoAdd(todo.name)">Add</button>
+Выберите дату: <input type="date" name="calendar">
 <table class="table">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Description</th>
     <th>Complete</th>
+    <th>Name</th>
+    <th>Description</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let todo of activeTodos">
+    <td>
+    <input class="toggle" type="checkbox" (click)="ToDoComplete(todo.id)" [checked]="todo.check">
+    </td>
     <td>{{todo.name}}</td>
     <td>{{todo.desc}}</td>
-    <td>
-      <button *ngIf="!todo.complete" class="btn btn-secondary" (click)="completeTodo(todo)">
-        <i class="fa fa-check"></i>
-      </button>
-      <button *ngIf="todo.complete" class="btn btn-success" disabled>
-        <i class="fa fa-check"></i>
-      </button>
-
-      <button class="btn btn-danger" (click)="deleteTodo(todo)">
-        <i class="fa fa-trash"></i>
-      </button>
-    </td>
   </tr>
   </tbody>
 </table>
@@ -32,26 +24,16 @@
 <table class="table">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Description</th>
     <th>Complete</th>
+    <th>Name</th>
+    <th>Description</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let todo of completedTodos">
+    <td><input class="toggle" type="checkbox" (click)="ToDoComplete(todo.id)" [checked]="todo.check"></td>
     <td>{{todo.name}}</td>
-    <td>{{todo.desk}}</td>
-    <td>
-      <button *ngIf="!todo.complete" class="btn btn-secondary" (click)="completeTodo(todo)">
-        <i class="fa fa-check"></i>
-      </button>
-      <button *ngIf="todo.complete" class="btn btn-success" disabled>
-        <i class="fa fa-check"></i>
-      </button>
-      <button class="btn btn-danger" (click)="deleteTodo(todo)">
-        <i class="fa fa-trash"></i>
-      </button>
-    </td>
+    <td>{{todo.desc}}</td>    
   </tr>
   </tbody>
 </table>
