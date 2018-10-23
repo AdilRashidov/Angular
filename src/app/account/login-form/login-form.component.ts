@@ -52,7 +52,7 @@ export class LoginFormComponent implements OnInit {
                  this.router.navigate(['/todo']);             
               }
             },
-            error => this.errors = error);
+            error => this.errors = 'Неверный логин или пароль');
         }
       }   
 }

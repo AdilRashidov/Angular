@@ -39,20 +39,23 @@ export class UserService extends BaseService {
   }
 
     register(email,password) {
-    return this.http.post(this.baseUrl + "/account/register", {email,password});
-  }  
+    return this.http.post(this.baseUrl + "/account/register", {email,password})
+    .pipe(map(res=> true),
+   catchError(this.handleError));
+};
+    
 
   login(email,password) {
     return this.http.post<any>(this.baseUrl+'/auth/login', { email, password })
           .pipe(map(res=>{ 
                 localStorage.setItem('auth_token', res.access_token);
-             //   console.log(localStorage.getItem('auth_token'));
                 this.loggedIn = true;
                 this._authNavStatusSource.next(true);
                 return true;
             }),
-            catchError(this.handleError));
+             catchError(this.handleError));
           };
+
   getToken(){
     return localStorage.getItem('access_token');
   }
