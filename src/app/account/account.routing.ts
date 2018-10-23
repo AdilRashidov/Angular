@@ -1,10 +1,22 @@
-import { ModuleWithProviders } from '@angular/core';
-import { RouterModule }        from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes }        from '@angular/router';
 
 import { RegistrationFormComponent }    from './registration-form/registration-form.component';
 import { LoginFormComponent }    from './login-form/login-form.component';
 
-export const routing: ModuleWithProviders = RouterModule.forChild([
-  { path: 'register', component: RegistrationFormComponent},
-  { path: 'login', component: LoginFormComponent}
-]);
+const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginFormComponent
+  },
+  {
+    path: 'register',
+    component: RegistrationFormComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class AccountRoutingModule {}

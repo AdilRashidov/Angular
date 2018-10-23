@@ -7,14 +7,14 @@ import { UserService }  from '../shared/services/user.service';
 
 import { EmailValidator } from '../directives/email.validator.directive';
 
-import { routing }  from './account.routing';
+import { AccountRoutingModule }  from './account.routing';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 
 
 @NgModule({
   imports: [
-    CommonModule,FormsModule,routing//,SharedModule
+    CommonModule,FormsModule,AccountRoutingModule//,SharedModule
   ],
   declarations: [EmailValidator, LoginFormComponent, RegistrationFormComponent
   ],
