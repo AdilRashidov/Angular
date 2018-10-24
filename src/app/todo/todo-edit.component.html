@@ -1,0 +1,17 @@
+<div *ngIf="loaded">
+        <h2>Изменение данных о товаре</h2>
+                <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" [(ngModel)]="todo.name" class="form-control"  />
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" [(ngModel)]="todo.desc" class="form-control" />
+                    </div>
+        <div class="form-group">
+            <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />
+        </div>
+        <a routerLink="../.." class="nav-link">Назад к списку</a>
+    </div>
+
+    

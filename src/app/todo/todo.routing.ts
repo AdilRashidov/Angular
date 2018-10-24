@@ -4,6 +4,7 @@ import { RouterModule, Routes }        from '@angular/router';
 
 import { TodoListComponent } from './todo-list.component';
 import { TodoCreateComponent } from './todo-create.component';
+import { TodoEditComponent } from './todo-edit.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,9 @@ const routes: Routes = [
   {
     path: 'todo/create',
     component:TodoCreateComponent
-  }
+  },
+  { path: 'todo/edit/:id', 
+  component: TodoEditComponent },
 ];
 
 @NgModule({

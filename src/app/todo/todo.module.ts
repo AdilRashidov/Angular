@@ -8,13 +8,14 @@ import { UserService }  from '../shared/services/user.service';
 import { TodoRoutingModule } from './todo.routing';
 import { TodoListComponent } from './todo-list.component';
 import { TodoCreateComponent } from './todo-create.component';
+import {TodoEditComponent} from'./todo-edit.component';
 
 
 @NgModule({
   imports: [
     CommonModule,FormsModule,TodoRoutingModule//,SharedModule
   ],
-  declarations: [ TodoListComponent, TodoCreateComponent
+  declarations: [ TodoListComponent, TodoCreateComponent, TodoEditComponent
   ],
   providers:    [ UserService ]
 })

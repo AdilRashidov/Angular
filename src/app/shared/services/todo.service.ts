@@ -57,6 +57,10 @@ export class ToDoService extends BaseService {
       {
         return this.http.delete(this.baseUrl+"/todo/"+id);
       }
+      ToDoGet(id:number)
+      {
+        return this.http.get(this.baseUrl+"/todo/"+id);
+      }
       ToDoUpdate(todo:ToDo)
       {
         return this.http.put(this.baseUrl+ "/todo/"+todo.id,todo)
