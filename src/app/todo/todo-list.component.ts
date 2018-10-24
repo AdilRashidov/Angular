@@ -30,9 +30,14 @@ export class TodoListComponent implements OnInit {
     this.getAll();
     })
   }
-  ToDoComplete(id:number){
+  ToDoDo(id:number){
     this.todoService.ToDoDo(id).subscribe(()=>{
     this.getAll();
+    })
+  }
+  ToDoDelete(id:number){
+    this.todoService.ToDoDelete(id).subscribe(()=>{
+      this.getAll();
     })
   }
 

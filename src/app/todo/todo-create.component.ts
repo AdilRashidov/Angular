@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToDoService } from '../shared/services/todo.service';
 import { ToDo } from '../shared/models/todo';
+import { TodoListComponent } from './todo-list.component';
  
 @Component({
-    templateUrl: './todo-create.component.html'
+    selector: 'todo-create',
+    templateUrl: './todo-create.component.html',
+    styleUrls:['./todo-create.component.css']
 })
 export class TodoCreateComponent {
  
@@ -14,7 +17,7 @@ export class TodoCreateComponent {
         var newToDo: ToDo ={
             name: this.todo.name,
             desc: this.todo.desc,
-            tags: 'nada'
+            tags: 'net'
         }
     this.todoService.ToDoAdd(newToDo).subscribe(()=>{
         this.todo.name='';

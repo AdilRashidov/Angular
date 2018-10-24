@@ -1,23 +1,27 @@
 <h2>Todos</h2>
 <div>
-    <a routerLink="create" class="nav-link">Добавить</a>
+    <a routerLink="create" class="btn btn-primary">Add</a>
 </div>
-<!--<button class="btn btn-primary" (click)="ToDoAdd(todo.name)">Add</button>-->
+<p>
 <table class="table">
   <thead>
   <tr>
     <th>Complete</th>
     <th>Name</th>
     <th>Description</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let todo of activeTodos">
     <td width="2px" align="center">
-    <input class="toggle" type="checkbox" (click)="ToDoComplete(todo.id)" [checked]="todo.check">
+    <input class="toggle" type="checkbox" (click)="ToDoDo(todo.id)" [checked]="todo.check">
     </td>
     <td>{{todo.name}}</td>
     <td>{{todo.desc}}</td>
+    <td>
+        <button class="btn btn-sm btn-danger" (click)="ToDoDelete(todo.id)">Удалить</button>
+    </td>
   </tr>
   </tbody>
 </table>
@@ -28,14 +32,18 @@
     <th>Complete</th>
     <th>Name</th>
     <th>Description</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let todo of completedTodos">
     <td width="2px" align="center">
-    <input class="toggle" type="checkbox" (click)="ToDoComplete(todo.id)" [checked]="todo.check"></td>
+    <input class="toggle" type="checkbox" (click)="ToDoDo(todo.id)" [checked]="todo.check"></td>
     <td>{{todo.name}}</td>
     <td>{{todo.desc}}</td>    
+    <td>
+    <button class="btn btn-sm btn-danger" (click)="ToDoDelete(todo.id)">Удалить</button>
+    </td>
   </tr>
   </tbody>
 </table>
