@@ -13,7 +13,8 @@ export class TodoListComponent implements OnInit {
   
   activeTodos: ToDo[];
   completedTodos: ToDo[];
-  todoMessage: string;
+  todo: ToDo= new ToDo();
+  tableMode: boolean = false;
 
   ngOnInit() {
     this.getAll();
@@ -25,11 +26,6 @@ export class TodoListComponent implements OnInit {
       this.completedTodos = data.filter((a) => a.check);
     });
   }
-  ToDoAdd(todo:ToDo){
-    this.todoService.ToDoAdd(todo).subscribe(()=>{
-    this.getAll();
-    })
-  }
   ToDoDo(id:number){
     this.todoService.ToDoDo(id).subscribe(()=>{
     this.getAll();
@@ -40,5 +36,9 @@ export class TodoListComponent implements OnInit {
       this.getAll();
     })
   }
+  editProduct(t: ToDo) {
+    this.todo = t;
+}
+
 
 }
