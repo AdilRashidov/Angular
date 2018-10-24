@@ -4,10 +4,10 @@ import { ToDo } from '../shared/models/todo'
 
 @Component({
   selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  templateUrl: './todo-list.component.html',
+  styleUrls: ['./todo-list.component.css']
 })
-export class TodoComponent implements OnInit {
+export class TodoListComponent implements OnInit {
 
   constructor(private todoService: ToDoService) { }
   

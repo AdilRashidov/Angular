@@ -1,7 +1,7 @@
 export class ToDo {
-    id : number;
+    id? : number;
     name :string;
-    desc: string;
-    tags:string;
-    check: boolean;
+    desc?: string;
+    tags?:string;
+    check?: boolean;
   }

@@ -10,17 +10,16 @@ import {routing} from './app.routing'
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { TodoComponent } from './todo/todo.component';
 import {TokenInterceptor} from './helpers/token-interceptor'
 import { AuthGuard } from './auth.guard';
 import { AccountModule } from './account/account.module';
+import { TodoModule } from './todo/todo.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
-    TodoComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +27,7 @@ import { AccountModule } from './account/account.module';
     HttpClientModule,
     ReactiveFormsModule,
     routing,
+    TodoModule,
     AccountModule
   ],
   providers: [AuthGuard,
