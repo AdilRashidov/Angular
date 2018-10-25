@@ -15,10 +15,20 @@ const routes: Routes = [
     path: 'todo/create',
     component:TodoCreateComponent
   },
-  { path: 'todo/edit/:id', 
-  component: TodoEditComponent },
   {
-    path:'todo/search/',
+    path: 'todo/search/**/create',
+    redirectTo: 'todo/create'
+  },
+  { 
+    path: 'todo/edit/:id', 
+    component: TodoEditComponent,
+   },
+  { 
+    path: 'todo/search/**/edit/**', 
+    redirectTo: 'todo/edit/:id'
+  },
+  {
+    path:'todo/search',
     redirectTo:'todo'
   },
   {

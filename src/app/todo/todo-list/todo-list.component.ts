@@ -20,19 +20,21 @@ export class TodoListComponent implements OnInit {
 
   constructor(private todoService: ToDoService, private router: Router, activeRoute: ActivatedRoute) {
     this.search = (activeRoute.snapshot.params["search"]);
+    
 }
-  ngOnInit() {
+  ngOnInit() {   
  this.getAll();
+
   }
 
   getAll() {
-      this.todoService.GetToDoList().subscribe((data: ToDo[]) => {
+    console.log(this.search);
+      this.todoService.ToDoSearch(this.search).subscribe((data: ToDo[]) => {
       this.activeTodos = data.filter((a) => !a.check);
       this.completedTodos = data.filter((a) => a.check);   
     });
   }
   
-
   ToDoDo(id:number){
     this.todoService.ToDoDo(id).subscribe(()=>{
     this.getAll();
@@ -47,11 +49,5 @@ export class TodoListComponent implements OnInit {
     this.todo = t;
   }
   
-  ToDoSearch(search:string){
-    this.todoService.ToDoSearch(this.search).subscribe((data: ToDo[])=>{
-          this.activeTodos = data.filter((a) => !a.check);
-    this.completedTodos = data.filter((a) => a.check);   
-  });
-  }
 
 }

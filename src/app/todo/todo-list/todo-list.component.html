@@ -2,7 +2,7 @@
 <div>
         <input class ="colortext" type="text" [(ngModel)]="search"  placeholder="search by name"  />
         <p></p>
-        <a [routerLink]="['todo/search',search]" (click)="ToDoSearch(search)" class="btn btn-sm btn-primary" >Search</a>
+        <a [routerLink]="['/todo/search',search]" (click)="GetAll(search)" class="btn btn-sm btn-primary" >Search</a>
         <p></p>
     <a routerLink="create" class="btn btn-primary">Add</a>
 </div>
