@@ -46,7 +46,7 @@ export class ToDoService extends BaseService {
       
       ToDoAdd(todo: ToDo)
       {
-        return this.http.post(this.baseUrl +"/todo",todo)
+        return this.http.post(this.baseUrl + "/todo",todo)
       }
 
       ToDoDo(id:number)
@@ -55,17 +55,20 @@ export class ToDoService extends BaseService {
       }
       ToDoDelete(id:number)
       {
-        return this.http.delete(this.baseUrl+"/todo/"+id);
+        return this.http.delete(this.baseUrl + "/todo/"+id);
       }
       ToDoGet(id:number)
       {
-        return this.http.get(this.baseUrl+"/todo/"+id);
+        return this.http.get(this.baseUrl + "/todo/"+id);
       }
       ToDoUpdate(todo:ToDo)
       {
-        return this.http.put(this.baseUrl+ "/todo/"+todo.id,todo)
+        return this.http.put(this.baseUrl + "/todo/"+todo.id,todo)
       }
-
+      ToDoSearch(name:string)
+      {
+        return this.http.get(this.baseUrl + "/todo/search/"+name);
+      }
 
 
     }

@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToDoService } from '../shared/services/todo.service';
-import { ToDo } from '../shared/models/todo';
-import { TodoListComponent } from './todo-list.component';
+import { ToDoService } from '../../shared/services/todo.service';
+import { ToDo } from '../../shared/models/todo';
  
 @Component({
     selector: 'todo-create',
     templateUrl: './todo-create.component.html',
-    styleUrls:['./todo-create.component.css']
+    styleUrls:['./todo-create.component.scss']
 })
 export class TodoCreateComponent {
  

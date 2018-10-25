@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToDoService } from '../shared/services/todo.service';
-import { ToDo } from '../shared/models/todo';
+import { ToDoService } from '../../shared/services/todo.service';
+import { ToDo } from '../../shared/models/todo';
  
 @Component({
     templateUrl: './todo-edit.component.html'

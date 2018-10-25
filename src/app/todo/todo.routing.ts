@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes }        from '@angular/router';
 
 
-import { TodoListComponent } from './todo-list.component';
-import { TodoCreateComponent } from './todo-create.component';
-import { TodoEditComponent } from './todo-edit.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoCreateComponent } from './todo-create/todo-create.component';
+import { TodoEditComponent } from './todo-edit/todo-edit.component';
 
 const routes: Routes = [
   {
@@ -17,6 +17,20 @@ const routes: Routes = [
   },
   { path: 'todo/edit/:id', 
   component: TodoEditComponent },
+  {
+    path:'todo/search/',
+    redirectTo:'todo'
+  },
+  {
+    path:'todo/search/undefined',
+    redirectTo:'todo'
+  },
+  {
+    path :'todo/search/:search',
+    component:TodoListComponent
+  }
+
+
 ];
 
 @NgModule({

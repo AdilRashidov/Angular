@@ -6,9 +6,9 @@ import { FormsModule }  from '@angular/forms';
 import { UserService }  from '../shared/services/user.service';
 
 import { TodoRoutingModule } from './todo.routing';
-import { TodoListComponent } from './todo-list.component';
-import { TodoCreateComponent } from './todo-create.component';
-import {TodoEditComponent} from'./todo-edit.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoCreateComponent } from './todo-create/todo-create.component';
+import {TodoEditComponent} from './todo-edit/todo-edit.component'
 
 
 @NgModule({
