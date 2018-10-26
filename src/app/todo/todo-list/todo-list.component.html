@@ -1,7 +1,7 @@
 <div>
     <p></p>
-    <input value="ss"class ="colortext" type="text" [(ngModel)]="todo.name"  placeholder="search by name"  />
-    <a [routerLink]="['/todo/search/',todo.name]"  (click)="ToDoSearch(todo.name)" class="btn btn-primary" >Search</a>
+    <input value="ss"class ="colortext" type="text" [(ngModel)]="searchName"  placeholder="search by name"  />
+    <a [routerLink]="['/todo/search/',searchName]"  (click)="ToDoSearch(searchName)" class="btn btn-primary" >Search</a>
 </div>
 <p>
 <table class="table">
