@@ -17,6 +17,7 @@ export class TodoListComponent implements OnInit {
   todo: ToDo= new ToDo();
   tableMode: boolean = false;
   search:string;
+  searchN:string;
 
   constructor(private todoService: ToDoService, private router: Router, private activeRoute: ActivatedRoute) {
     
@@ -24,7 +25,7 @@ export class TodoListComponent implements OnInit {
   ngOnInit() { 
   this.todo.name= (this.activeRoute.snapshot.params["search"]);  
   this.ToDoSearch(this.todo.name);
-
+  
   }
 
   ToDoSearch(searchname?:string)
@@ -34,17 +35,20 @@ export class TodoListComponent implements OnInit {
         this.activeTodos = data.filter((a) => !a.check);
         this.completedTodos = data.filter((a) => a.check); 
       });
+    this.searchN=searchname;
   }
   
   
   ToDoDo(id:number){
+    this.search = (this.activeRoute.snapshot.params["search"]); 
     this.todoService.ToDoDo(id).subscribe(()=>{
-    this.ToDoSearch();
+    this.ToDoSearch(this.search);
     })
   }
   ToDoDelete(id:number){
+    this.search = (this.activeRoute.snapshot.params["search"]); 
     this.todoService.ToDoDelete(id).subscribe(()=>{
-      this.ToDoSearch();
+    this.ToDoSearch(this.search);
     })
   }
   editProduct(t: ToDo) {
