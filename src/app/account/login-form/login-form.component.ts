@@ -49,7 +49,7 @@ export class LoginFormComponent implements OnInit {
             .subscribe(
             result => {         
               if (result) {
-                 this.router.navigate(['/todo']);             
+                 this.router.navigate(['/todo/list']);             
               }
             },
             error => this.errors = 'Неверный логин или пароль');

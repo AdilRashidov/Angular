@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToDoService } from '../../shared/services/todo.service';
 import { ToDo } from '../../shared/models/todo';
  
 @Component({
-    templateUrl: './todo-edit.component.html'
+    templateUrl: './todo-edit.component.html',
+    styleUrls: ['./todo-edit.component.scss']
 })
 export class TodoEditComponent implements OnInit {
  
@@ -12,7 +14,8 @@ export class TodoEditComponent implements OnInit {
     todo: ToDo;    // изменяемый объект
     loaded: boolean = false;
  
-    constructor(private todoService: ToDoService, private router: Router, activeRoute: ActivatedRoute) {
+    constructor(private todoService: ToDoService, private router: Router, activeRoute: ActivatedRoute,
+       private location:Location) {
         this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
     }
  
@@ -27,5 +30,9 @@ export class TodoEditComponent implements OnInit {
  
     save() {
         this.todoService.ToDoUpdate(this.todo).subscribe(data => this.router.navigateByUrl("/todo"));
+    }
+
+    nazad(){
+        this.location.back();
     }
 }

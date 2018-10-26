@@ -8,32 +8,25 @@ import { TodoEditComponent } from './todo-edit/todo-edit.component';
 
 const routes: Routes = [
   {
-    path: 'todo',
+    path: 'todo/list',
     component: TodoListComponent
   },
   {
     path: 'todo/create',
-    component:TodoCreateComponent
-  },
-  {
-    path: 'todo/search/**/create',
-    redirectTo: 'todo/create'
+    component:TodoCreateComponent,
+    pathMatch:'full'
   },
   { 
     path: 'todo/edit/:id', 
     component: TodoEditComponent,
-   },
-  { 
-    path: 'todo/search/**/edit/**', 
-    redirectTo: 'todo/edit/:id'
   },
   {
-    path:'todo/search',
-    redirectTo:'todo'
+    path:'todo/search/',
+    redirectTo:'todo/list'
   },
   {
     path:'todo/search/undefined',
-    redirectTo:'todo'
+    redirectTo:'/todo/list'
   },
   {
     path :'todo/search/:search',

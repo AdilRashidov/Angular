@@ -7,7 +7,7 @@ import { ToDo } from '../../shared/models/todo'
 @Component({
   selector: 'app-todo',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.scss']
 })
 
 export class TodoListComponent implements OnInit {
@@ -18,31 +18,33 @@ export class TodoListComponent implements OnInit {
   tableMode: boolean = false;
   search:string;
 
-  constructor(private todoService: ToDoService, private router: Router, activeRoute: ActivatedRoute) {
-    this.search = (activeRoute.snapshot.params["search"]);
+  constructor(private todoService: ToDoService, private router: Router, private activeRoute: ActivatedRoute) {
     
 }
-  ngOnInit() {   
- this.getAll();
+  ngOnInit() { 
+  this.todo.name= (this.activeRoute.snapshot.params["search"]);  
+  this.ToDoSearch(this.todo.name);
 
   }
 
-  getAll() {
-    console.log(this.search);
-      this.todoService.ToDoSearch(this.search).subscribe((data: ToDo[]) => {
-      this.activeTodos = data.filter((a) => !a.check);
-      this.completedTodos = data.filter((a) => a.check);   
-    });
+  ToDoSearch(searchname?:string)
+  { if (searchname=='')searchname='undefined'
+    this.todoService.ToDoSearch(searchname).subscribe((data: ToDo[]) => 
+      {
+        this.activeTodos = data.filter((a) => !a.check);
+        this.completedTodos = data.filter((a) => a.check); 
+      });
   }
+  
   
   ToDoDo(id:number){
     this.todoService.ToDoDo(id).subscribe(()=>{
-    this.getAll();
+    this.ToDoSearch();
     })
   }
   ToDoDelete(id:number){
     this.todoService.ToDoDelete(id).subscribe(()=>{
-      this.getAll();
+      this.ToDoSearch();
     })
   }
   editProduct(t: ToDo) {
