@@ -1,9 +1,14 @@
-<div>
-    <p></p>
-    <input value="ss"class ="colortext" type="text" [(ngModel)]="searchName"  placeholder="search by name"  />
-    <a [routerLink]="['/todo/search/',searchName]"  (click)="ToDoSearch(searchName)" class="btn btn-primary" >Search</a>
+<div id="left">
+    <h1>search</h1>
+    <input  type="text" [(ngModel)]="searchName"  placeholder="search by name"  />
+    <a [routerLink]="['/todo/search/',searchName]"  (click)="ToDoSearch(searchName)" class="btn btn-primary" >Search</a> 
 </div>
-<p>
+<div id="right">
+    <H1>quick add</H1>
+    <input class="add" type="text"[(ngModel)]=todo.name placeholder="enter todo name"/>
+    <a (click)="ToDoAdd()" class="btn btn-primary">Add</a>  
+</div>
+
 <table class="table">
   <thead>
   <tr>

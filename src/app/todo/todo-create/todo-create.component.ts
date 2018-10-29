@@ -13,11 +13,12 @@ export class TodoCreateComponent {
  
     todo: ToDo = new ToDo();    // добавляемый объект
     constructor(private todoService: ToDoService, private router: Router) { }
+   
     add() {
         var newToDo: ToDo ={
             name: this.todo.name,
             desc: this.todo.desc,
-            tags: 'net'
+            tags: ''
         }
     this.todoService.ToDoAdd(newToDo).subscribe(()=>{
         this.todo.name='';

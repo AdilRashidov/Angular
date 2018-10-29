@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }        from '@angular/router';
 
-
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoCreateComponent } from './todo-create/todo-create.component';
 import { TodoEditComponent } from './todo-edit/todo-edit.component';
+import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
   {
@@ -13,12 +13,11 @@ const routes: Routes = [
   },
   {
     path: 'todo/create',
-    component:TodoCreateComponent,
-    pathMatch:'full'
+    component:TodoCreateComponent
   },
   { 
     path: 'todo/edit/:id', 
-    component: TodoEditComponent,
+    component: TodoEditComponent
   },
   {
     path:'todo/search/',
@@ -30,7 +29,7 @@ const routes: Routes = [
   },
   {
     path :'todo/search/:search',
-    component:TodoListComponent
+    component:TodoListComponent,
   }
 
 

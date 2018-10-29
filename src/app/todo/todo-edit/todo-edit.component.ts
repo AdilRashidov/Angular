@@ -29,10 +29,12 @@ export class TodoEditComponent implements OnInit {
     }
  
     save() {
-        this.todoService.ToDoUpdate(this.todo).subscribe(data => this.router.navigateByUrl("/todo"));
+        this.todoService.ToDoUpdate(this.todo).subscribe(data => this.router.navigateByUrl("/todo/list"));
+        this.location.back;
     }
 
     nazad(){
         this.location.back();
+        
     }
 }

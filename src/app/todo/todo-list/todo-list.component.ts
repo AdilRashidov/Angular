@@ -24,12 +24,12 @@ export class TodoListComponent implements OnInit {
 }
   ngOnInit() { 
   this.searchName = (this.activeRoute.snapshot.params["search"]);  
-  this.ToDoSearch(this.searchName);
-  
+  this.ToDoSearch(this.searchName); 
   }
 
   ToDoSearch(searchname?:string)
-  { if (searchname=='')searchname='undefined'
+  {
+   if (searchname=='')searchname='undefined'
     this.todoService.ToDoSearch(searchname).subscribe((data: ToDo[]) => 
       {
         this.activeTodos = data.filter((a) => !a.check);
@@ -50,8 +50,17 @@ export class TodoListComponent implements OnInit {
     this.ToDoSearch(this.search);
     })
   }
-  editProduct(t: ToDo) {
-    this.todo = t;
+
+  ToDoAdd() {
+    var newToDo: ToDo ={
+        name: this.todo.name,
+        desc: '',
+        tags: ''
+    }
+  this.todoService.ToDoAdd(newToDo).subscribe(()=>{
+    this.todo.name='';
+    this.ToDoSearch(this.search);
+    })
   }
   
 
