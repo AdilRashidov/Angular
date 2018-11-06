@@ -34,11 +34,6 @@ export class LoginFormComponent implements OnInit {
               });      
                     }
 
-        ngOnDestroy() {
-                // prevent memory leak by unsubscribing
-            this.subscription.unsubscribe();
-                      }
-
     login({ value, valid }: { value: UserLogin, valid: boolean }) {
         this.submitted = true;
         this.isRequesting = true;

@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 import { UserRegistration } from '../../shared/models/user.registration';
 import { UserService } from '../../shared/services/user.service';
-import { finalize } from 'rxjs/operators';
+import { finalize,catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-registration-form',
@@ -21,20 +22,24 @@ export class RegistrationFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) {
+  registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) 
+  {
     this.submitted = true;
     this.isRequesting = true;
     this.errors='';
-        this.userService.register(value.email,value.password)
-                  .pipe(finalize(() => this.isRequesting = false))
-                  .subscribe(
-                    result  => {
-                      if(result){
-                        this.router.navigate(['/login']);//{queryParams: {brandNew: true,email:value.email}});                         
-                    }
-                  },
-                    error =>  this.errors = "Данный пользователь зарегистрирован или введены неверные данные");      
- } 
+    if(valid)
+    {
+       this.userService.register(value.email,value.password)
+           .pipe(finalize(() => this.isRequesting = false),
+           catchError(error=>{ this.errors='Email is already taken';
+           return of(error);
+          }))
+           .subscribe(
+            result => {if (result) {
+              this.router.navigate(['/login'],{queryParams: {brandNew: true,email:value.email}});              
+           }})
+      }      
+  }
 
    
 

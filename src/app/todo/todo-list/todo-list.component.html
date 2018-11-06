@@ -1,7 +1,7 @@
 <div id="left">
     <h1>search</h1>
     <input  type="text" [(ngModel)]="searchName"  placeholder="search by name"  />
-    <a [routerLink]="['/todo/search/',searchName]"  (click)="ToDoSearch(searchName)" class="btn btn-primary" >Search</a> 
+    <a type="submit"[routerLink]="['/todo/search/',searchName]"  (click)="ToDoSearch(searchName)" class="btn btn-primary" >Search</a> 
 </div>
 <div id="right">
     <H1>quick add</H1>
@@ -26,8 +26,8 @@
     <td>{{todo.name}}</td>
     <td>{{todo.desc}}</td>
     <td>
-        <a [routerLink]="['/todo/edit',todo.id]" class="btn btn-sm btn-primary" >Изменить</a>
-        <button class="btn btn-sm btn-danger" (click)="ToDoDelete(todo.id)">Удалить</button>
+        <a [routerLink]="['/todo/edit',todo.id]" class="btn btn-sm btn-primary" >Edit</a>
+        <button class="btn btn-sm btn-danger" (click)="ToDoDelete(todo.id)">Delete</button>
     </td>
   </tr>
   </tbody>
@@ -49,8 +49,8 @@
     <td>{{todo.name}}</td>
     <td>{{todo.desc}}</td>    
     <td>
-    <a [routerLink]="['/todo/edit',todo.id]" class="btn btn-sm btn-primary" >Изменить</a>
-    <button class="btn btn-sm btn-danger" (click)="ToDoDelete(todo.id)">Удалить</button>
+    <a [routerLink]="['/todo/edit',todo.id]" class="btn btn-sm btn-primary" >Edit</a>
+    <button class="btn btn-sm btn-danger" (click)="ToDoDelete(todo.id)">Delete</button>
     </td>
   </tr>
   </tbody>
