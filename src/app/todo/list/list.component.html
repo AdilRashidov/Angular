@@ -2,7 +2,7 @@
 <p>
   <tr *ngFor="let list of UrLists">   	
     <td width="2px" align="center">
-    <td>{{list.name}}</td>    
+    <td><a [routerLink]="['/list',list.id]">{{list.name}}</a></td>    
     <td>
     </td>
   </tr>

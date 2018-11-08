@@ -39,9 +39,7 @@ export class UserService extends BaseService {
   }
 
     register(email,password) {
-    return this.http.post(this.baseUrl + "/account/register", {email,password})
-    .pipe(map(res=> true),
-   catchError(this.handleError));
+    return this.http.post<string>(this.baseUrl + "/account/register", {email,password});  
 };
     
 

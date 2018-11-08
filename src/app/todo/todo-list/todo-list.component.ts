@@ -1,8 +1,11 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ToDoService} from '../../shared/services/todo.service'
+import { ListService } from '../../shared/services/list.service'
+import { ToDoService } from '../../shared/services/todo.service'
+
 import { ToDo } from '../../shared/models/todo'
+import { List } from 'src/app/shared/models/list';
 
 @Component({
   selector: 'app-todo',
@@ -17,12 +20,14 @@ export class TodoListComponent implements OnInit {
   todo: ToDo= new ToDo();
   tableMode: boolean = false;
   search:string;
+  id: number;
   searchName='';
 
-  constructor(private todoService: ToDoService, private router: Router, private activeRoute: ActivatedRoute) {
+  constructor(private listService: ListService, private todoService: ToDoService, private router: Router, private activeRoute: ActivatedRoute) {
     
 }
   ngOnInit() { 
+  this.id = Number.parseInt(this.activeRoute.snapshot.params["id"]);
   this.searchName = (this.activeRoute.snapshot.params["search"]);  
   this.ToDoSearch(this.searchName); 
   }
@@ -30,10 +35,11 @@ export class TodoListComponent implements OnInit {
   ToDoSearch(searchname?:string)
   {
    if (searchname=='')searchname='undefined'
-    this.todoService.ToDoSearch(searchname).subscribe((data: ToDo[]) => 
+    this.listService.GetList(this.id).subscribe((data: List) => 
       {
-        this.activeTodos = data.filter((a) => !a.check);
-        this.completedTodos = data.filter((a) => a.check); 
+        console.log(data.todosDto);
+        this.activeTodos = data.todosDto.filter((a) => !a.check);
+        this.completedTodos = data.todosDto.filter((a) => a.check); 
       });
   }
   

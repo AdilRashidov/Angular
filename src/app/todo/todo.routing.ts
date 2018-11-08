@@ -9,7 +9,7 @@ import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   {
-    path: 'todo/list',
+    path: 'list/:id',
     component: TodoListComponent,
     canActivate:[AuthGuard]
   },
