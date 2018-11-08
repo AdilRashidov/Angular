@@ -20,7 +20,7 @@ export class LoginFormComponent implements OnInit {
     errors: string;
     isRequesting: boolean;
     submitted: boolean = false;
-    credentials: UserLogin = { email: '', password: '' };
+    UserLogin = { email: '', password: '' };
 
     constructor(private userService: UserService, private router: Router,
         private activatedRoute: ActivatedRoute) {}
@@ -30,7 +30,7 @@ export class LoginFormComponent implements OnInit {
             this.subscription = this.activatedRoute.queryParams.subscribe(
               (param: any) => {
                  this.brandNew = param['brandNew'];   
-                 this.credentials.email = param['email'];         
+                 this.UserLogin.email = param['email'];         
               });      
                     }
 

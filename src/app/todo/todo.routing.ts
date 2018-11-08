@@ -5,31 +5,43 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoCreateComponent } from './todo-create/todo-create.component';
 import { TodoEditComponent } from './todo-edit/todo-edit.component';
 import { AuthGuard } from '../auth.guard';
+import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   {
     path: 'todo/list',
-    component: TodoListComponent
+    component: TodoListComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'list',
+    component:ListComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'todo/create',
-    component:TodoCreateComponent
+    component:TodoCreateComponent,
+    canActivate:[AuthGuard]
   },
   { 
     path: 'todo/edit/:id', 
-    component: TodoEditComponent
+    component: TodoEditComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'todo/search/',
-    redirectTo:'todo/list'
+    redirectTo:'todo/list',
+    canActivate:[AuthGuard]
   },
   {
     path:'todo/search/undefined',
-    redirectTo:'/todo/list'
+    redirectTo:'/todo/list',
+    canActivate:[AuthGuard]
   },
   {
     path :'todo/search/:search',
     component:TodoListComponent,
+    canActivate:[AuthGuard]
   }
 
 
